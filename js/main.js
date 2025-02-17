@@ -1,5 +1,3 @@
-// Functionality for showing/hiding the comments section
-
 document.addEventListener("DOMContentLoaded", () => {
   const showHideBtn = document.querySelector(".show-hide");
   const commentWrapper = document.querySelector(".comment-wrapper");
@@ -7,6 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (showHideBtn && commentWrapper) {
     commentWrapper.style.display = "none"; // Hide comments initially
 
+    // Make the button focusable by adding tabindex
+    showHideBtn.setAttribute("tabindex", "0");
+
+    // Toggle visibility on button click
     showHideBtn.addEventListener("click", () => {
       if (commentWrapper.style.display === "none") {
         commentWrapper.style.display = "block";
@@ -14,6 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         commentWrapper.style.display = "none";
         showHideBtn.textContent = "Show comments";
+      }
+    });
+
+    // Enable activating the button using the Return (Enter) key
+    showHideBtn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === "Return") {
+        showHideBtn.click(); // Trigger the click event
       }
     });
   }
